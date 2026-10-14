@@ -1,0 +1,62 @@
+{
+  "kind": "evm_contracts",
+  "contracts": [
+    {
+      "contract": "Params",
+      "constructorArgs": [
+        "0x5cb0686a4475d1f8a6c6e5240579080a4a05b609",
+        "200",
+        "1000000000000000000"
+      ]
+    },
+    {
+      "contract": "GameRegistry",
+      "constructorArgs": [
+        "0x38b05971c79e738f64452be83c78ec3d66535b7a",
+        "$contract:Params",
+        "0x3c9599670893546a3def98608259a8e6582790cc",
+        "0xb7d282d1c46f6062963bf2d134d058aa4de3af4cb7b092c5a0fd12ed74dc0f2c",
+        "0xdc0842e9fd0017b08be09e787e877c53cfb446ca52aabdb9770e5c33b49d1325",
+        "26182375",
+        "200000000000000000000000000"
+      ]
+    },
+    {
+      "contract": "RewardPool",
+      "constructorArgs": [
+        "$contract:GameRegistry"
+      ]
+    },
+    {
+      "contract": "FarmRewards",
+      "constructorArgs": [
+        "$contract:GameRegistry"
+      ]
+    },
+    {
+      "contract": "FarmCore",
+      "constructorArgs": [
+        "$contract:GameRegistry"
+      ]
+    },
+    {
+      "contract": "FarmItems",
+      "constructorArgs": [
+        "$contract:GameRegistry"
+      ]
+    },
+    {
+      "contract": "PackSale",
+      "constructorArgs": [
+        "$contract:GameRegistry"
+      ]
+    },
+    {
+      "contract": "StarterClaim",
+      "constructorArgs": [
+        "$contract:GameRegistry"
+      ]
+    }
+  ],
+  "notes": "BLACKOUT L3, job A, Robinhood Chain (4663): one launch of the eight pinned v3.18 contracts in this exact order (byte-identical to v3.17). Zero-based indices: Params 0, GameRegistry 1, RewardPool 2, FarmRewards 3, FarmCore 4, FarmItems 5, PackSale 6, StarterClaim 7. Use the unchanged repository compiler settings: solc 0.8.26, optimizer 200, cancun, viaIR false, bytecode_hash none. Params delegates swarm authority to the recorded L1 SwarmDesk at 0x5cb0686a4475d1f8a6c6e5240579080a4a05b609 (launch 1628); its EndowmentEscrow is 0x11947494c0ba91508eb7409648193818c36521fb. GameRegistry uses the recorded L2 token 0x38b05971c79e738f64452be83c78ec3d66535b7a and V4Market hook 0x3c9599670893546a3def98608259a8e6582790cc from launch 1710 (ETH/token, fee 12500, tick spacing 60). GAME_CONFIG_HASH is 0x11ed7438974e96ecc962201e9c46422c7bf239d725876863fa25a56c734b20d3. References resolve by name within this launch. After deployment is recorded, the handoff must report all eight confirmed addresses with these indices and the assigned launch number N_A. The pinned binder 0x6d51cBE774aeAe4dd40bCA2560E9bc2695A0d007 then signs SwarmDesk.bind(REGISTRY, registryCode, paramsCode, N_A, 1, N_A, 0, 1710), using the recorded GameRegistry address and the exact pinned creation code. Only this binder can bind. Immediately afterward, permissionless GameRegistry.register calls register roles 0-5 using N_A, indices 2-7 respectively, and the matching creation code; verify each registered address against the launch record. These later calls are operational handoff information, not manifest initialization calls. Answers may be stored after L3 but execution waits for all L4 modules to be registered. Findings in docs/accepted-v318.md and the approved c0e1b0b6 findings remain accepted; all source and code pins are preserved."
+}
